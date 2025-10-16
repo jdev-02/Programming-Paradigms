@@ -1,0 +1,26 @@
+This is a test file for the TorpedoDepot Email Highlighter extension.
+
+Valid TorpedoDepot emails (should be highlighted in blue):
+- valid@torpedodepot.com
+- test123@torpedodepot.net
+- user@torpedodepot.wannabemil
+- admin@torpedodepot.com
+- support@torpedodepot.net
+
+Invalid emails (should NOT be highlighted):
+- invalid@gmail.com
+- user@yahoo.net
+- notanemail
+- test@torpedodepot.org
+- user@otherdomain.com
+
+Mixed content:
+The email contact@torpedodepot.com should be highlighted, but support@example.com should not.
+
+Multiple emails on one line: user1@torpedodepot.com and user2@torpedodepot.net and invalid@yahoo.com
+
+Edge cases:
+- @torpedodepot.com (missing local part)
+- user@ (incomplete)
+- user@torpedodepot (missing domain suffix)
+

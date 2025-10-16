@@ -1,0 +1,96 @@
+FINITE STATE MACHINE FOR TORPEDODEPOT EMAIL LEXER
+====================================================
+
+This diagram shows the lexical analyzer (lexer) states for the TorpedoDepot email grammar.
+
+INITIAL STATE (S0)
+    ↓
+    [Read character]
+    ↓
+    [Is alphanumeric?] ──YES──→ ALPHANUMERIC_STATE (S1)
+    ↓ NO
+    [Is whitespace?] ──YES──→ SKIP_WHITESPACE (S2)
+    ↓ NO
+    [Is '@'?] ──YES──→ AT_SYMBOL_STATE (S3)
+    ↓ NO
+    [Is '.'?] ──YES──→ DOT_STATE (S4)
+    ↓ NO
+    [Other character] ──→ ERROR_STATE (S5)
+
+ALPHANUMERIC_STATE (S1)
+    ↓
+    [Continue reading alphanumeric chars]
+    ↓
+    [Non-alphanumeric found] ──→ EMIT_ALPHANUMERIC_TOKEN ──→ INITIAL_STATE (S0)
+
+SKIP_WHITESPACE (S2)
+    ↓
+    [Continue reading whitespace chars]
+    ↓
+    [Non-whitespace found] ──→ SKIP_TOKEN ──→ INITIAL_STATE (S0)
+
+AT_SYMBOL_STATE (S3)
+    ↓
+    [Check if next chars are 'torpedodepot']
+    ↓
+    [Match 'torpedodepot'] ──→ TORPEDODEPOT_STATE (S6)
+    ↓ NO
+    [No match] ──→ ERROR_STATE (S5)
+
+TORPEDODEPOT_STATE (S6)
+    ↓
+    [Check for domain suffix]
+    ↓
+    [Is '.com'?] ──YES──→ EMIT_COM_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [Is '.net'?] ──YES──→ EMIT_NET_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [Is '.wannabemil'?] ──YES──→ EMIT_WANNABEMIL_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [No match] ──→ ERROR_STATE (S5)
+
+DOT_STATE (S4)
+    ↓
+    [Check for domain suffix]
+    ↓
+    [Is 'com'?] ──YES──→ EMIT_COM_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [Is 'net'?] ──YES──→ EMIT_NET_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [Is 'wannabemil'?] ──YES──→ EMIT_WANNABEMIL_TOKEN ──→ INITIAL_STATE (S0)
+    ↓ NO
+    [No match] ──→ ERROR_STATE (S5)
+
+ERROR_STATE (S5)
+    ↓
+    [Consume character and continue] ──→ INITIAL_STATE (S0)
+
+TOKEN DEFINITIONS:
+==================
+ALPHANUMERIC: [a-zA-Z0-9]+
+NET: '.net'
+COM: '.com'
+WANNABEMIL: '.wannabemil'
+WS: [ \t\r\n]+ (skipped)
+
+GRAMMAR RULES IMPLEMENTED:
+==========================
+email: localPart '@torpedodepot' domainSuffix
+localPart: ALPHANUMERIC
+domainSuffix: NET | COM | WANNABEMIL
+
+VALID EMAIL EXAMPLES:
+=====================
+- valid@torpedodepot.com
+- test123@torpedodepot.net
+- user@torpedodepot.wannabemil
+
+INVALID EMAIL EXAMPLES:
+=======================
+- invalid@gmail.com (wrong domain)
+- user@yahoo.net (wrong domain)
+- notanemail (no @ symbol)
+- @torpedodepot.com (missing local part)
+- user@ (incomplete)
+- user@torpedodepot (missing domain suffix)
+

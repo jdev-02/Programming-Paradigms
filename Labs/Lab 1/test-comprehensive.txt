@@ -1,0 +1,103 @@
+COMPREHENSIVE TEST FILE FOR TORPEDODEPOT EMAIL HIGHLIGHTER
+===========================================================
+
+This file contains various test cases to verify the extension works correctly.
+
+VALID TORPEDODEPOT EMAILS (should be highlighted in BLUE):
+===========================================================
+
+Basic valid emails:
+- valid@torpedodepot.com
+- test123@torpedodepot.net
+- user@torpedodepot.wannabemil
+
+Alphanumeric local parts:
+- admin@torpedodepot.com
+- support123@torpedodepot.net
+- user456@torpedodepot.wannabemil
+- a1b2c3@torpedodepot.com
+
+Mixed case local parts:
+- UserName@torpedodepot.com
+- TestUser123@torpedodepot.net
+- AdminUser@torpedodepot.wannabemil
+
+All three domain suffixes:
+- test@torpedodepot.com
+- test@torpedodepot.net
+- test@torpedodepot.wannabemil
+
+INVALID EMAILS (should NOT be highlighted):
+===========================================
+
+Wrong domains:
+- invalid@gmail.com
+- user@yahoo.net
+- test@example.com
+- admin@microsoft.com
+
+Wrong torpedodepot variations:
+- test@torpedodepot.org
+- user@torpedodepot.info
+- admin@torpedodepot.biz
+
+Incomplete emails:
+- notanemail
+- @torpedodepot.com
+- user@
+- user@torpedodepot
+- @torpedodepot
+
+Invalid local parts:
+- user-name@torpedodepot.com
+- user.name@torpedodepot.com
+- user_name@torpedodepot.com
+- user+tag@torpedodepot.com
+
+EDGE CASES:
+===========
+
+Multiple emails on one line:
+user1@torpedodepot.com and user2@torpedodepot.net and invalid@gmail.com
+
+Emails in sentences:
+Contact us at support@torpedodepot.com for assistance.
+Send reports to admin@torpedodepot.net for review.
+Use test@torpedodepot.wannabemil for testing.
+
+Mixed valid and invalid:
+Valid: test@torpedodepot.com
+Invalid: test@gmail.com
+Valid: admin@torpedodepot.net
+Invalid: admin@yahoo.com
+
+Whitespace around emails:
+  spaced@torpedodepot.com  
+	tabbed@torpedodepot.net	
+newlined@torpedodepot.wannabemil
+
+SPECIAL CHARACTERS AND FORMATTING:
+==================================
+
+Numbers in local part:
+- 123@torpedodepot.com
+- test456@torpedodepot.net
+- user789@torpedodepot.wannabemil
+
+Single character local part:
+- a@torpedodepot.com
+- 1@torpedodepot.net
+- z@torpedodepot.wannabemil
+
+Long local parts:
+- verylongusername123456789@torpedodepot.com
+- testuserwithverylongname@torpedodepot.net
+- adminuserwithverylongname@torpedodepot.wannabemil
+
+EXPECTED RESULTS:
+================
+- All valid TorpedoDepot emails should be highlighted in BLUE
+- Invalid emails should NOT be highlighted
+- The highlighting should update in real-time as you type
+- Hovering over highlighted emails should show "TorpedoDepot Email: [email]"
+
