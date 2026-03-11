@@ -1,4 +1,4 @@
-## LT Jonathan Goohs
+## LT [author]
 ## CS3022 Lab 3 Report
 
 ## 0 – What are the three errors?​
